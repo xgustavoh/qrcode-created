@@ -1,0 +1,34 @@
+{
+	"name": "qrcode-criator",
+	"version": "1.0.0",
+	"description": "Criador de QRCode",
+	"main": "index.js",
+	"scripts": {
+		"postinstall": "electron-builder install-app-deps",
+		"start": "electron .",
+		"pack": "build --dir",
+		"dist": "build"
+	},
+	"build": {
+		"appId": "com.qrcode.criator",
+		"directories": {
+			"output": "build/Release"
+		},
+		"win": {
+			"target": [
+				"portable",
+				"NSIS"
+			],
+			"icon": "qr-code.ico"
+		},
+		"portable": {
+			"artifactName": "QRCode-criator-portable.exe"
+		}
+	},
+	"author": "Gustavo Henrique Minari",
+	"license": "ISC",
+	"devDependencies": {
+		"electron": "^5.0.4",
+		"electron-builder": "^20.44.4"
+	}
+}
