@@ -1,6 +1,6 @@
 {
   "name": "qrcode-created",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Criador de QRCode",
   "main": "index.js",
   "scripts": {
