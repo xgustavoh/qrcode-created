@@ -1,296 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>QRCode</title>
-	<style>
-	body{
-		width: 100vw;
-		margin: 0;
-		padding: 0;
-		border: 0;
-	}
-	#ctl {
-		display: flex;
-		flex-direction: row;		
-		align-items: stretch;
-		justify-content: space-around;
-	}
-	#ctl .opts {
-		flex: 2;
-		margin: 0 20px;
-    	padding: 0 10px;
-	}
-	#ctl .preview {
-		flex: 1;
-		margin: 0 20px;
-    	padding: 0 10px;
-		
-		display: flex;
-		flex-direction: column;		
-		align-items: center;
-	}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>QRCode</title>
+    <style>
+      body {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      #ctl {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-around;
+      }
+      #ctl .opts {
+        flex: 2;
+        margin: 0 20px;
+        padding: 0 10px;
+      }
+      #ctl .preview {
+        flex: 1;
+        margin: 0 20px;
+        padding: 0 10px;
 
-	#ctl .preview input[name='width'],
-	#ctl .preview input[name='height'] {
-		width: 100px;
-		height: 25px;
-		border: 1px solid #6f6d6d;
-		border-radius: 5px;
-		padding: 0 5px;
-		background: #FFF !important;
-	}
-	#ctl .preview input[name='width'] {
-		text-align: right;
-	}
-	#ctl .preview .output {
-		margin: 20px 0;
-	}
-	#ctl .preview .create {
-		cursor: pointer;
-		color: #FFF;
-		font-weight: 700;
-		font-size: 20px;
-		width: 250px;
-		height: 50px;
-		border-radius: 5px;
-		border: 2px solid #1fa045;
-		background: #21b34d !important;
-	}
-	#ctl .preview .save {
-		cursor: pointer;
-		color: #FFF;
-		font-weight: 600;
-		width: 100px;
-		height: 30px;
-		border-radius: 5px;
-		border: 2px solid #571fa0;
-		background: #6a1cd1 !important;
-	}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-	#ctl .opts h3 span {
-		color: rgb(98, 98, 98);
-		font-size: 12px;
-		float: right;
-	}
-	#ctl .opts .icon ul.list-icons {
-		cursor: pointer;
-		display: flex;
-		list-style: none;
-		align-items: center;
-		justify-content: space-between;
-		flex-wrap: wrap;
-	}
-	#ctl .opts .icon ul.list-icons li {
-		border: 3px solid #CCC;
-		width: 70px;
-		height: 70px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	#ctl .opts .icon ul.list-icons li.select {
-		border: 3px solid #571fa0;
-	}
-	#ctl .opts .icon ul.list-icons li.upload {
-		color: #1fa055;
-		font-size: 50px;
-	}
-	
-	#ctl .opts ul.qr-type {
-		cursor: pointer;
-		display: flex;
-		list-style: none;
-		align-items: center;
-		font-weight: 800;
-	}
-	#ctl .opts ul.qr-type li {
-		border: 2px solid #eaeaea;
-		margin-right: 10px;
-		padding: 0 10px;
-		min-width: 70px;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	#ctl .opts ul.qr-type li.select {
-		border: 3px solid #571fa0;
-	}
-	
-	#ctl .opts .data .form {
-		display: flex;
-		padding-left: 40px;
-		flex-direction: column;
-    	align-items: stretch;
-	}
-	
-	#ctl .opts .data .form .group-input {
-		flex: 1;
-		display: flex;
-		list-style: none;
-		align-items: center;
-		justify-content: space-between;
-	}
-	#ctl .opts .data .form .group-input label {
-		width: 100px;
-		color:#495057;
-		font-size: 18px;
-		font-weight: 700;
-	}
-	#ctl .opts .data .form .group-input input {
-		/* width: 280px; */
-		flex: 1;
-		height: 20px;
-		border-radius: 2px;
-		border: 2px solid #eaeaea;
-		padding: 10px;
-		font-size: 14px;
-		font-weight: 700;
-		color: #495057;
-		margin: 5px;
-	}
-	
-	
-	.preview .group-input {
-		display: flex;
-		list-style: none;
-		align-items: center;
-		justify-content: space-between;
-		margin: 5px 0 15px 0;
-	}
-	.preview .group-input label {
-		width: 100px;
-		color:#6f6d6d;
-		font-size: 14px;
-		font-weight: 700;
-	}
-	.preview .group-input input, 
-	.preview .group-input select {
-		width: 150px;
-		height: 35px;
-		border-radius: 2px;
-		border: 1px solid #6f6d6d;
-		padding: 0 10px;
-		font-size: 12px;
-		font-weight: 700;
-		color: #6f6d6d;
-	}
-	.preview .group-input input {
-		width: 145px;
-		padding: 0;
-	}
-	</style>
-</head>
-<body>
+      #ctl .preview input[name="width"],
+      #ctl .preview input[name="height"] {
+        width: 100px;
+        height: 25px;
+        border: 1px solid #6f6d6d;
+        border-radius: 5px;
+        padding: 0 5px;
+        background: #fff !important;
+      }
+      #ctl .preview input[name="width"] {
+        text-align: right;
+      }
+      #ctl .preview .output {
+        margin: 20px 0;
+      }
+      #ctl .preview .create {
+        cursor: pointer;
+        color: #fff;
+        font-weight: 700;
+        font-size: 20px;
+        width: 250px;
+        height: 50px;
+        border-radius: 5px;
+        border: 2px solid #1fa045;
+        background: #21b34d !important;
+      }
+      #ctl .preview .save {
+        cursor: pointer;
+        color: #fff;
+        font-weight: 600;
+        width: 100px;
+        height: 30px;
+        border-radius: 5px;
+        border: 2px solid #571fa0;
+        background: #6a1cd1 !important;
+      }
+
+      #ctl .opts h3 span {
+        color: rgb(98, 98, 98);
+        font-size: 12px;
+        float: right;
+      }
+      #ctl .opts .icon ul.list-icons {
+        cursor: pointer;
+        display: flex;
+        list-style: none;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      #ctl .opts .icon ul.list-icons li {
+        border: 3px solid #ccc;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #ctl .opts .icon ul.list-icons li.select {
+        border: 3px solid #571fa0;
+      }
+      #ctl .opts .icon ul.list-icons li.upload {
+        color: #1fa055;
+        font-size: 50px;
+      }
+
+      #ctl .opts ul.qr-type {
+        cursor: pointer;
+        display: flex;
+        list-style: none;
+        align-items: center;
+        font-weight: 800;
+      }
+      #ctl .opts ul.qr-type li {
+        border: 2px solid #eaeaea;
+        margin-right: 10px;
+        padding: 0 10px;
+        min-width: 70px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #ctl .opts ul.qr-type li.select {
+        border: 3px solid #571fa0;
+      }
+
+      #ctl .opts .data .form {
+        display: flex;
+        padding-left: 40px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      #ctl .opts .data .form .group-input {
+        flex: 1;
+        display: flex;
+        list-style: none;
+        align-items: center;
+        justify-content: space-between;
+      }
+      #ctl .opts .data .form .group-input label {
+        width: 100px;
+        color: #495057;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      #ctl .opts .data .form .group-input input {
+        /* width: 280px; */
+        flex: 1;
+        height: 20px;
+        border-radius: 2px;
+        border: 2px solid #eaeaea;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #495057;
+        margin: 5px;
+      }
+
+      .preview .group-input {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        justify-content: space-between;
+        margin: 5px 0 15px 0;
+      }
+      .preview .group-input label {
+        width: 100px;
+        color: #6f6d6d;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .preview .group-input input,
+      .preview .group-input select {
+        width: 150px;
+        height: 35px;
+        border-radius: 2px;
+        border: 1px solid #6f6d6d;
+        padding: 0 10px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #6f6d6d;
+      }
+      .preview .group-input input {
+        width: 145px;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
     <h1>QRCode</h1>
     <div id="ctl">
-        <div class="opts">
-			<div class="data">
-				<h3>Informação no QRCode<span></span></h3>
-				<ul class="qr-type">
-					<li class="select" value="url">Url</li>
-					<li value="mail">E-mail</li>
-					<li value="vcard">V-Card (Contato)</li>
-				</ul>
-				<div class="form url">
-					<div class="group-input">
-						<label for="data-url">URL</label>
-						<input type="text" name="data-url" id="data-url">
-					</div>
-				</div>
-				<div class="form mail">
-					<div class="group-input">
-						<label for="data-mail">E-mail</label>
-						<input type="text" name="data-mail" id="data-mail">
-					</div>
-				</div>
-				<div class="form vcard">
-					<div class="group-input">
-						<label>Nome Completo</label>
-						<input type="text" name="data-vcar-name" id="data-vcar-name">
-					</div>
-					<div class="group-input">
-						<label>E-mail</label>
-						<input type="text" name="data-vcar-mail" id="data-vcar-mail">
-					</div>
-					<div class="group-input">
-						<label>Website</label>
-						<input type="text" name="data-vcar-site" id="data-vcar-site">
-					</div>
-					<div class="group-input">
-						<label>Contato</label>
-						<input type="text" name="data-vcar-tel" id="data-vcar-tel" placeholder="Telefone">
-						<input type="text" name="data-vcar-cel" id="data-vcar-cel" placeholder="Celular">
-					</div>	
-					<div class="group-input">
-						<label>Empresa</label>
-						<input type="text" name="data-vcar-cname" id="data-vcar-cname" placeholder="Nome da Empresa">
-						<input type="text" name="data-vcar-cargo" id="data-vcar-cargo" placeholder="Cargo">
-					</div>
-					<div class="group-input">
-						<label>Endereço</label>
-						<input type="text" name="data-vcar-ende" id="data-vcar-ende" placeholder="Rua / Avenida">
-					</div>
-					<div class="group-input">
-						<label></label>
-						<input type="text" name="data-vcar-city" id="data-vcar-city" placeholder="Cidade">
-						<input type="text" name="data-vcar-cep" id="data-vcar-cep" placeholder="CEP">
-					</div>
-					<div class="group-input">
-						<label></label>
-						<input type="text" name="data-vcar-esta" id="data-vcar-esta" placeholder="Estado">
-						<input type="text" name="data-vcar-pais" id="data-vcar-pais" placeholder="Pais">
-					</div>
-				</div>
-			</div>
-			<div class="icon">
-				<h3>Escolha um Icone <span></span></h3>
-				<ul class="list-icons">
-					<li class="select" value="none">Sem</li>
-					<li value="contato"><img src="icons/contato.png" width="50" height="50"></li>
-					<li value="fb"><img src="icons/facebook.png" width="50" height="50"></li>
-					<li value="insta"><img src="icons/instagram.png" width="50" height="50"></li>
-					<li class="upload">+</li>
-				</ul>
-				<input type="file" name="upload-icon" id="upload-icon" style="display: none;">
-			</div>
-			
-			<!-- <div>
+      <div class="opts">
+        <div class="data">
+          <h3>Informação no QRCode<span></span></h3>
+          <ul class="qr-type">
+            <li class="select" value="url">Url</li>
+            <li value="mail">E-mail</li>
+            <li value="vcard">V-Card (Contato)</li>
+          </ul>
+          <div class="form url">
+            <div class="group-input">
+              <label for="data-url">URL</label>
+              <input type="text" name="data-url" id="data-url" />
+            </div>
+          </div>
+          <div class="form mail">
+            <div class="group-input">
+              <label for="data-mail">E-mail</label>
+              <input type="text" name="data-mail" id="data-mail" />
+            </div>
+          </div>
+          <div class="form vcard">
+            <div class="group-input">
+              <label>Nome Completo</label>
+              <input type="text" name="data-vcar-name" id="data-vcar-name" />
+            </div>
+            <div class="group-input">
+              <label>E-mail</label>
+              <input type="text" name="data-vcar-mail" id="data-vcar-mail" />
+            </div>
+            <div class="group-input">
+              <label>Website</label>
+              <input type="text" name="data-vcar-site" id="data-vcar-site" />
+            </div>
+            <div class="group-input">
+              <label>Contato</label>
+              <input
+                type="text"
+                name="data-vcar-tel"
+                id="data-vcar-tel"
+                placeholder="Telefone"
+              />
+              <input
+                type="text"
+                name="data-vcar-cel"
+                id="data-vcar-cel"
+                placeholder="Celular"
+              />
+            </div>
+            <div class="group-input">
+              <label>Empresa</label>
+              <input
+                type="text"
+                name="data-vcar-cname"
+                id="data-vcar-cname"
+                placeholder="Nome da Empresa"
+              />
+              <input
+                type="text"
+                name="data-vcar-cargo"
+                id="data-vcar-cargo"
+                placeholder="Cargo"
+              />
+            </div>
+            <div class="group-input">
+              <label>Endereço</label>
+              <input
+                type="text"
+                name="data-vcar-ende"
+                id="data-vcar-ende"
+                placeholder="Rua / Avenida"
+              />
+            </div>
+            <div class="group-input">
+              <label></label>
+              <input
+                type="text"
+                name="data-vcar-city"
+                id="data-vcar-city"
+                placeholder="Cidade"
+              />
+              <input
+                type="text"
+                name="data-vcar-cep"
+                id="data-vcar-cep"
+                placeholder="CEP"
+              />
+            </div>
+            <div class="group-input">
+              <label></label>
+              <input
+                type="text"
+                name="data-vcar-esta"
+                id="data-vcar-esta"
+                placeholder="Estado"
+              />
+              <input
+                type="text"
+                name="data-vcar-pais"
+                id="data-vcar-pais"
+                placeholder="Pais"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="icon">
+          <h3>Escolha um Icone <span></span></h3>
+          <ul class="list-icons">
+            <li class="select" value="none">Sem</li>
+            <li value="contato">
+              <img src="icons/contato.png" width="50" height="50" />
+            </li>
+            <li value="fb">
+              <img src="icons/facebook.png" width="50" height="50" />
+            </li>
+            <li value="insta">
+              <img src="icons/instagram.png" width="50" height="50" />
+            </li>
+            <li class="upload">+</li>
+          </ul>
+          <input
+            type="file"
+            name="upload-icon"
+            id="upload-icon"
+            style="display: none"
+          />
+        </div>
+
+        <!-- <div>
 					Icon Size: <input type="range" name="icon-size" id="icon-size" min="5" max="30" value="25" step="0.01"> <span>83%</span>
 				</div> -->
+      </div>
+      <div class="preview">
+        <h3>Visualizar <span></span></h3>
+        <p>
+          <input type="number" name="width" id="width" value="300" /> x
+          <input type="number" name="height" id="height" value="300" disabled />
+        </p>
+        <div class="group-input">
+          <label>Qualidade</label>
+          <select name="quality" id="quality">
+            <option value="1">Baixa (7%)</option>
+            <option value="0">Media (15%)</option>
+            <option value="3">Alta (25%)</option>
+            <option value="2">Ultra (30%)</option>
+          </select>
         </div>
-        <div class="preview">
-			<h3>Visualizar <span></span></h3>
-			<p>
-				<input type="number" name="width" id="width" value="300"> x <input type="number" name="height" id="height" value="300" disabled>
-			</p>
-			<div class="group-input">
-				<label>Qualidade</label>
-				<select name="quality" id="quality">
-					<option value="1">Baixa (7%)</option>
-					<option value="0">Media (15%)</option>
-					<option value="3">Alta  (25%)</option>
-					<option value="2">Ultra (30%)</option>
-				</select>
-			</div>
-			<div class="group-input" id="icon-size-box">
-				<label>Icone Tam. (20%)</label>
-				<input type="range" name="icon-size" id="icon-size" min="0.05" max="0.35" value="0.20" step="0.01">
-			</div>
-			<button class="create">Criar / Atualizar</button>
-			<div class="output"></div>			
-			<div>
-				<button class="save" type="png">Salvar PNG</button>
-			</div>
+        <div class="group-input" id="icon-size-box">
+          <label>Icone Tam. (20%)</label>
+          <input
+            type="range"
+            name="icon-size"
+            id="icon-size"
+            min="0.05"
+            max="0.35"
+            value="0.20"
+            step="0.01"
+          />
         </div>
+        <button class="create">Criar / Atualizar</button>
+        <div class="output"></div>
+        <div>
+          <button class="save" type="png">Salvar PNG</button>
+        </div>
+      </div>
     </div>
-    
+
     <script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jquery.qrcode.js"></script>
-	<script type="text/javascript" src="js/vcard.js"></script>
-	<script type="text/javascript" src="js/gerador.qrcode.js"></script>
-</body>
+    <script type="text/javascript" src="js/jquery.qrcode.js"></script>
+    <script type="text/javascript" src="js/vcard.js"></script>
+    <script type="text/javascript" src="js/gerador.qrcode.js"></script>
+  </body>
 </html>

@@ -1,34 +1,36 @@
 {
-	"name": "qrcode-criator",
-	"version": "1.0.0",
-	"description": "Criador de QRCode",
-	"main": "index.js",
-	"scripts": {
-		"postinstall": "electron-builder install-app-deps",
-		"start": "electron .",
-		"pack": "build --dir",
-		"dist": "build"
-	},
-	"build": {
-		"appId": "com.qrcode.criator",
-		"directories": {
-			"output": "build/Release"
-		},
-		"win": {
-			"target": [
-				"portable",
-				"NSIS"
-			],
-			"icon": "qr-code.ico"
-		},
-		"portable": {
-			"artifactName": "QRCode-criator-portable.exe"
-		}
-	},
-	"author": "Gustavo Henrique Minari",
-	"license": "ISC",
-	"devDependencies": {
-		"electron": "^7.2.4",
-		"electron-builder": "^20.44.4"
-	}
+  "name": "qrcode-created",
+  "version": "1.0.0",
+  "description": "Criador de QRCode",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.xgustavo.qrcode-created",
+    "artifactName": "QRCode Created - ${version}.${ext}",
+    "copyright": "Copyright © 2020",
+    "directories": {
+      "output": "build/Release"
+    },
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "qr-code.ico"
+    },
+    "portable": {
+      "artifactName": "QRCode-Created-portable.exe"
+    }
+  },
+  "author": "Gustavo Henrique Minari",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^11.0.3",
+    "electron-builder": "^22.9.1"
+  }
 }
